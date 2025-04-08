@@ -14,11 +14,12 @@ function App() {
   return (
 
     <div className="App">
-    {/* <TableComponent /> */}
+    <TableComponent />
 
-    <NavigationBar/>
+    {/* <NavigationBar/>
 
-    <Home/>
+    <Home/> */}
+
   </div>
    
 

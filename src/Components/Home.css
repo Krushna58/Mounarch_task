@@ -1,3 +1,7 @@
+body{
+    background-color: blue;
+}
+
 #main-container {
     width: 100vw;
     height: 84vh;

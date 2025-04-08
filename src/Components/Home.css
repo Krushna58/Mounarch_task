@@ -1,0 +1,32 @@
+#main-container {
+    width: 100vw;
+    height: 84vh;
+    background-color: blue;
+    padding: 10px 0px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#drop-down-container {
+    background-color: white;
+    border-radius: 5px;
+    width: 20%;
+    height: 100%;
+}
+
+#drop-down {
+    width: 90%;
+    /* margin: auto; */
+    padding: 5px;
+    border-radius: 3px;
+    outline: none;
+    margin: 10px 5px;
+}
+
+#map-container {
+    width: 78%;
+    height: 100%;
+    border-radius: 10px;
+}

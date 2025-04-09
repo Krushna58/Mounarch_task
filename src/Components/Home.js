@@ -5,13 +5,14 @@ import VillageDropdown from './VillageDropdown';
 import MapDisplay from './MapDisplay';
 import 'leaflet/dist/leaflet.css';
 import './Home.css';
+import Spinner from 'react-bootstrap/Spinner';
 
 const Home = () => {
   const [geoData, setGeoData] = useState(null);
   const [villageGeoData, setVillageGeoData] = useState(null);
   const [selectedDistrict, setSelectedDistrict] = useState('');
   const [selectedVillage, setSelectedVillage] = useState('');
-  const [tahasilsData, setTahasilsData] = useState(null);
+  // const [tahasilsData, setTahasilsData] = useState(null);
   const [villagesGeoJsonDataFeatures, setVillagesGeoJsonDataFeatures] = useState(null);
 
   useEffect(() => {
@@ -25,18 +26,25 @@ const Home = () => {
     setSelectedVillage('');
   }, [selectedDistrict]);
 
-  useEffect(() => {
-    axios
-      .get('/tahsils.json')
-      .then((res) => setTahasilsData(res.data))
-      .catch((err) => console.error('Error Loading Tahsils Data : ', err));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get('/tahsils.json')
+  //     .then((res) => setTahasilsData(res.data))
+      
+  //     .catch((err) => console.error('Error Loading Tahsils Data : ', err));
+
+      
+  // }, []);
 
   const fetchRelatedVillages = (districtName) => {
     axios
-      .get('/maharashtra_villages_geojson.txt', { responseType: 'text' })
+      .get('/maharashtra_villages_geojson.txt', 
+        
+        { responseType: 'text' })
       .then((response) => {
         const json = JSON.parse(response.data);
+        
+        
         setVillagesGeoJsonDataFeatures(json.features);
         const filteredVillages = json.features.filter(
           (village) => village.properties?.DISTRICT === districtName
@@ -71,7 +79,9 @@ const Home = () => {
 
   const onEachFeature = (feature, layer) => {
     const name = feature.properties?.dtname || 'Unknown';
-    layer.bindPopup(name.toString());
+
+   console.log(feature.properties.dtname );
+    layer.bindPopup(name);
   };
 
   return (
@@ -108,7 +118,10 @@ const Home = () => {
             fontSize: '3rem',
           }}
         >
-          Map is Loading...
+          Map is Loading
+          <Spinner animation="grow" />
+          <Spinner animation="grow" />
+          <Spinner animation="grow" />
         </h1>
       )}
     </div>
